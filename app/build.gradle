@@ -1,36 +1,52 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'com.android.application'
+}
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    namespace 'me.prapon.eyeblinkdetection'
+    compileSdk 33
+    buildToolsVersion "30.0.3"
+
     defaultConfig {
         applicationId "me.prapon.eyeblinkdetection"
-        minSdkVersion 19
-        targetSdkVersion 29
+        minSdk 19
+        targetSdk 33
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    buildFeatures {
+        buildConfig true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.google.android.gms:play-services-vision-common:19.1.3'
+    implementation 'com.google.android.gms:play-services-vision:20.1.3'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
+    implementation 'com.google.mlkit:face-detection:16.1.5'
+    implementation 'com.karumi:dexter:6.2.3'
+    implementation "androidx.multidex:multidex:2.0.1"
 
-//    Google Vision API
-    implementation 'com.google.mlkit:face-detection:16.0.1'
-
-//    collect permission on runtime
-    implementation 'com.karumi:dexter:4.2.0'
 }
